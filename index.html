@@ -6,7 +6,7 @@
     <style> circle {stroke: black;} </style>
 </head>
 <body onload='init()'>
-<svg width=500 height=500>
+<svg width=1000 height=500>
 </svg>
 <div id="tooltip"></div>
 <script>
@@ -37,7 +37,8 @@ d3.select("svg")
            .style("left",x(d3.event.pageX)+"px")
            .style("top",y(d3.event.pageY)+"px")
            .html("Make: "+d.Make+", Fuel Type: "+d.Fuel+", # of Cylinders: "+d.EngineCylinders);
- });
+ })
+ .on("mouseout", function(d) {tooltip.style("opacity",0);})
 
 //create title
 d3.select("svg")
@@ -72,6 +73,14 @@ d3.select("svg")
     .attr('transform', 'rotate(-90)')
       .style("text-anchor", "middle")
       .text("Avg Hwy MPG");
+
+  // draw legend
+d3.select("svg").append("circle").attr("cx",side+80).attr("cy",130).attr("r", 4).style("fill", "red")
+d3.select("svg").append("circle").attr("cx",side+80).attr("cy",150).attr("r", 4).style("fill", "blue")
+d3.select("svg").append("circle").attr("cx",side+80).attr("cy",170).attr("r", 4).style("fill", "green")
+d3.select("svg").append("text").attr("x", side+90).attr("y", 130).text("Diesel").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","red")
+d3.select("svg").append("text").attr("x", side+90).attr("y", 150).text("Gasoline").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","blue")
+d3.select("svg").append("text").attr("x", side+90).attr("y", 170).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","green")
 }
 </script>
 </body>
