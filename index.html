@@ -36,8 +36,17 @@ d3.select("svg")
     tooltip.style("opacity",1)
            .style("left",x(d3.event.pageX)+"px")
            .style("top",y(d3.event.pageY)+"px")
-           .html(d.Make);
+           .html("Make: "+d.Make+", Fuel Type: "+d.Fuel+", # of Cylinders: "+d.EngineCylinders);
  });
+
+//create title
+d3.select("svg")
+ .append("text")
+  .attr("x",side/2)
+  .attr("y",margin/2)
+  .attr("font-weight",1000)
+  .text("Fuel Efficency of Cars")
+
 //create y axis
 d3.select("svg")
  .append("g")
