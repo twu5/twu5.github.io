@@ -75,14 +75,32 @@ d3.select("svg")
       .text("Avg Hwy MPG");
 
 //affordance
-d3.select("svg").append("text").attr("x", 0).attr("y", side+90).text("Scoll over chart for more details").style("font-size", "10px");
+d3.select("svg").append("text").attr("x", 0).attr("y", side+90).text("Scoll over chart and legend for more details").style("font-size", "10px");
   // draw legend
 d3.select("svg").append("circle").attr("cx",side+80).attr("cy",130).attr("r", 4).style("fill", "red");
 d3.select("svg").append("circle").attr("cx",side+80).attr("cy",150).attr("r", 4).style("fill", "blue");
 d3.select("svg").append("circle").attr("cx",side+80).attr("cy",170).attr("r", 4).style("fill", "green");
-d3.select("svg").append("text").attr("x", side+90).attr("y", 130).text("Diesel").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","red");
-d3.select("svg").append("text").attr("x", side+90).attr("y", 150).text("Gasoline").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","blue");
-d3.select("svg").append("text").attr("x", side+90).attr("y", 170).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","green");
+d3.select("svg").append("text").attr("x", side+90).attr("y", 130).text("Diesel").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","red").on("mouseover", function(d) {
+    tooltip.style("opacity",1)
+           .style("left",x(d3.event.pageX)+"px")
+           .style("top",y(d3.event.pageY)+"px")
+           .html("Average MPG of a diesel engine is 33");
+ })
+ .on("mouseout", function(d) {tooltip.style("opacity",0);});
+d3.select("svg").append("text").attr("x", side+90).attr("y", 150).text("Gasoline").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","blue").on("mouseover", function(d) {
+    tooltip.style("opacity",1)
+           .style("left",x(d3.event.pageX)+"px")
+           .style("top",y(d3.event.pageY)+"px")
+           .html("Average MPG of a gasoline engine is 27");
+ })
+ .on("mouseout", function(d) {tooltip.style("opacity",0);});
+d3.select("svg").append("text").attr("x", side+90).attr("y", 170).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle").attr("fill","green").on("mouseover", function(d) {
+    tooltip.style("opacity",1)
+           .style("left",x(d3.event.pageX)+"px")
+           .style("top",y(d3.event.pageY)+"px")
+           .html("Average MPG of an electric engine is 102");
+ })
+ .on("mouseout", function(d) {tooltip.style("opacity",0);});
 }
 </script>
 </body>
